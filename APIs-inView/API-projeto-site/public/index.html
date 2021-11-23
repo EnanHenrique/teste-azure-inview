@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleIndex.css">
+    <script src="https://kit.fontawesome.com/573731047d.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="img/InView apenas logo.png" type="image/x-icon">
+    <title>InView - Home</title>
+</head>
+<body>
+    <i class="fas fa-times" id="x_fechar" onclick="celular_fechar()"></i>
+    <div class="mobile-header" onclick="celular_abrir()" id="celular_menu">
+        <div class="line1" id="linha1"></div>
+        <div class="line2" id="linha2"></div>
+        <div class="line3" id="linha3"></div>
+        <div id="opcoes_menu">
+            <ul>
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#Sobre">Sobre nós</a></li>
+                <li><a href="#Servico">Serviços</a></li>
+                <li><a href="#Contato">Contato</a></li>
+                <li><a href="login.html">Junte-se</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="identidade_visual">
+                <img src="img/InView apenas logo.png">
+                <span class="span_logo"> InView </span>
+            </div>
+            <div class="menu_meio">
+                <ul class="desktop-header">
+                    <li><a href="#Home">Home</a></li>
+                    <li class="lista_desktop"><a href="#Sobre">Sobre nós</a></li>
+                    <li class="lista_desktop"><a href="#Servico">Serviços</a></li>
+                    <li class="lista_desktop"><a href="#Contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="botao">
+                <li> <a class="botao_juntar" href="login.html">Junte-se</a> </li>
+            </div>
+        </nav>
+    </header>
+
+    <!-- FIM DO HEADER -->
+
+    <div class="body_page">
+        <!-- INICIO HOME -->
+        <a name="Home"></a>
+        <div class="home">
+            <div class="texto_atencao">
+                <span> Utilize a aplicação de monitoramento mais moderna do momento </span>
+            </div>
+            
+            <div class="imagem_e_contato">
+                <img src="img/business1.png" alt="">
+            </div>
+            
+            <div class="contato">
+                
+                <div class="numero">
+                    <img src="img/brasil.png">
+                    <span> +55 (11) 991234-5678 </span>
+                </div>
+                
+                
+                <div class="localizacao">
+                    <span> São Paulo, SP </span>
+                </div>
+            </div>
+            
+        </div>
+        <!-- FIM HOME -->
+    </div>
+    
+    <!-- INICIO SOBRE NÓS -->
+    <!-- IMAGEM PORTA DE ENTRADA -->
+    <img src="img/porta.png" style="float: left;" id="porta">
+
+    <div class="sobre_nos">
+        <a name="Sobre" class="span_destaque"> Sobre nós </a>
+        <br><br>
+        <div class="conteudo">
+            <span class="span_descricao">
+                Nós da InView, somos uma empresa de tecnologia 
+                focada no seguimento de monitoramento tanto de 
+                hardware quanto de software das estações de 
+                trabalho de Usinas Hidroelétricas. 
+            </span>
+            <br><br>
+            <span class="span_descricao">
+                Nossos fundadores se dedicaram ao máximo para 
+                desenvolver um projeto onde nossos clientes e 
+                parceiros estariam com a tecnologia mais 
+                recente possível para garantir o excelente 
+                funcionamento dos seus serviços.
+            </span>
+
+        </div>
+        
+        <div class="fotos">
+
+            <div class="moldura">
+                <a href="https://github.com/EnanHenrique" target="_blank"> <img src="img/enan.png" alt=""> </a>
+            </div>
+
+            <div class="moldura">
+                <a href="https://github.com/DantasEduardo" target="_blank"> <img src="img/eduardo.png" alt=""> </a>
+            </div>
+
+            <div class="moldura">
+                <a href="https://github.com/IgorDeMoraisPereiraDaSilva" target="_blank"> <img src="img/igorM.png" alt=""> </a>
+            </div>
+
+            <div class="moldura">
+                <a href="https://github.com/IgorSergio2003" target="_blank"> <img src="img/igor.png" alt=""> </a>
+            </div>
+
+            <div class="moldura">
+                <a href="https://github.com/Gomes-Rafael" target="_blank"> <img src="img/rafa.png" alt=""> </a>
+            </div>
+
+            <div class="moldura">
+                <a href="https://github.com/RenanMoreiraGitHub" target="_blank"> <img src="img/renan.png" alt=""> </a>
+            </div>
+        </div>
+
+    </div>
+    <!-- FIM SOBRE NÓS -->
+
+    <!-- INICIO SERVIÇOS -->
+    <div class="servicos">
+        <a name="Servico" class="span_destaque">Serviços</a>
+        <br><br>
+
+        <div class="box_servicos">
+            <div class="botoes_passar" onclick="voltar_foto()">
+                <img src="img/seta_esquerda.png" style="margin:-40px;" alt="">
+            </div>
+            <div class="servicos_fotos">
+                <img src="img/seer.png" id="foto_servico">
+            </div>
+            <div class="botoes_passar" onclick="passar_foto()">
+                <img src="img/seta_direita.png" style="margin:20px;" alt="">
+            </div>
+        </div>
+
+        <div class="beneficios">
+
+            <!-- B1 -->
+            <span class="destaque_beneficio" style="float: right;">Múltiplas visões</span>
+            <br><br>
+            <span class="span_beneficios"> 
+                Oferecemos Dashboards personalizadas para Gestores e Analistas, cada uma 
+                respectivamente com seus detalhes mais importantes para visualização, 
+                podendo tomar melhores decisões no futuro.
+            </span>
+            <br><br>
+
+            <!-- B2 -->
+            <span class="destaque_beneficio">Redução de falsos alertas</span>
+            <br><br>
+            <span class="span_beneficios"> 
+                Na engenharia são utilizados softwares com grande nível de processamento de hardware, 
+                causando paradas inesperadas tanto das estações quanto do próprio programa. Com nosso 
+                serviço de monitoramento, ao atingir metas pré-estabelecidas já emitimos alertas para 
+                que seja provisionadas novas medidas.
+            </span>
+            <br><br>
+
+            <!-- B3 -->
+            <span class="destaque_beneficio" style="float: right;">Eficiência das máquinas</span>
+            <br><br>
+            <span class="span_beneficios"> 
+                Com a diminuição de paradas das máquinas com o monitoramento, podem ser realizadas análises 
+                dos momentos de menor geração de energia para garantir a manutenção dos equipamentos.
+            </span>
+        </div>
+
+    </div>
+    <!-- FIM SERVIÇOS -->
+
+    <!-- INICIO FOOTER -->
+        <footer>
+            <div class="meios_comunicacao">
+                <a name="Contato"></a>
+                <div class="box_logo">
+                    <img src="img/InView apenas logo branco.png">
+                    <br>
+                    <span class="nome_branco"> InView</span>
+                    <br>
+                    <span class="nome_branco" id="copyright"> © 2021 - InView, <br>
+                        Todos os direitos reservados</span>
+                </div>
+
+                <div class="social">
+                    <!-- face -->
+                    <a href="https://pt-br.facebook.com/" target="_blank"> <img src="img/facebook icon.png"> </a>
+                    
+                    <!-- linkedin -->
+                    <a href="https://br.linkedin.com/" target="_blank"> <img src="img/linkedin icon.png"> </a>
+                    
+                    <!-- email -->
+                    <a href="mailto:contato.inview@outlook.com" target="_blank"> <img src="img/email icon.png"> </a>
+                    
+                    <!-- insta -->
+                    <a href="https://www.instagram.com/" target="_blank"> <img src="img/instagram icon.png"> </a>
+                    
+                    <!-- telefone -->
+                    <a href="#" target="_blank"> <img src="img/telefone icon.png"> </a>
+                    
+                </div>
+            </div>
+        </footer>
+        
+        <!-- FIM FOOTER -->
+    </body>
+
+    <script>
+        
+        var all_fotos = ["img/seer.png", "img/dash.png", "img/dash1.png"];
+        const foto = document.getElementById("foto_servico");
+        var indice_foto = 0;
+
+        function passar_foto() {
+                indice_foto++;
+                foto.src = all_fotos[indice_foto];
+
+                if (indice_foto > (all_fotos.length) - 1) {
+                    indice_foto = 0;
+                    foto.src = all_fotos[indice_foto];
+                }
+        }
+
+        function voltar_foto() {
+                indice_foto--;
+                foto.src = all_fotos[indice_foto];
+
+                if (indice_foto < 0) {
+                    indice_foto = (all_fotos.length) - 1;
+                    foto.src = all_fotos[indice_foto];
+                }
+        }
+
+        function celular_abrir() {
+            
+            celular_menu.style.width = "50%";
+            celular_menu.style.height = "99vh";
+            celular_menu.style.left = "50%"
+            opcoes_menu.style.display = "block";
+            opcoes_menu.style.backgroundColor = "#2d2c30";
+            linha1.style.display = "none";
+            linha2.style.display = "none";
+            linha3.style.display = "none";
+            x_fechar.style.display = "block";
+        }
+
+        function celular_fechar() {
+            celular_menu.style.width = "6%";
+            celular_menu.style.height = "6vh";
+            celular_menu.style.left = "94%";
+            opcoes_menu.style.display = "none";
+            linha1.style.display = "block";
+            linha2.style.display = "block";
+            linha3.style.display = "block";
+            x_fechar.style.display = "none";
+        }
+
+        setInterval(passar_foto, 3000)
+
+    </script>
+    </html>

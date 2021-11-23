@@ -1,0 +1,4 @@
+1-verificação por login do gestor
+2-trazer dados de maquinas
+3-mostrar maquinas por setor
+4-criticidade

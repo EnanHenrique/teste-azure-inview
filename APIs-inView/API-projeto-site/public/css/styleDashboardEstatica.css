@@ -1,0 +1,355 @@
+/* Link fonte do Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #2d2c30;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+}
+.sidebar.open{
+  width: 250px;
+}
+.sidebar .empresa{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .empresa .icon{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar .empresa .nomeEmpresa{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar.open .empresa .icon,
+.sidebar.open .empresa .nomeEmpresa{
+  opacity: 1;
+}
+
+
+.sidebar .empresa #btn_menu{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .empresa #btn_menu{
+  text-align: right;
+}
+.sidebar i{
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+.sidebar .lista{
+  margin-top: 20px;
+  height: 100%;
+}
+.sidebar li{
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+.sidebar li .tituloTopicos{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tituloTopicos{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tituloTopicos{
+  display: none;
+}
+
+
+.sidebar .bx-search{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #2d2c30;
+  color: #FFF;
+}
+.sidebar.open .bx-search:hover{
+  background: #2d2c30;
+  color: #FFF;
+}
+.sidebar .bx-search:hover{
+  background: #FFF;
+  color: #2d2c30;
+}
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #2d2c30;
+}
+.sidebar li a:hover{
+  background: #FFF;
+}
+.sidebar li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color: #2d2c30;
+}
+.sidebar li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #2d2c30;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.sidebar.open li.profile{
+  width: 250px;
+}
+.sidebar li .profile-details{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job{
+  font-size: 12px;
+}
+.sidebar .profile #log_out{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #2d2c30;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 10px;
+  transition: all 0.5s ease;
+}
+.sidebar #log_out:hover{
+  background-color: white;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+}
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+  border-radius: 10px;
+}
+.sidebar.open .profile #log_out:hover{
+ border-radius: 10px;
+  background: white;
+  transition: all 0.5s ease;
+}
+.home-section{
+    
+  position: absolute;
+  background: #f5f5f5;
+  min-height: 100vh;
+  max-height: max-content;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+.sidebar.open ~ .home-section{
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text{
+  display: inline-block;
+  color: #2d2c30;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px
+}
+@media (max-width: 420px) {
+  .sidebar li .tituloTopicos{
+    display: none;
+  }
+  .div_selects{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+
+  }
+
+  
+}
+
+/* Dashboard */
+.graphics{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    
+    }
+
+    .graphics h1{
+color: black;
+font-size: 50px;
+
+    }
+
+    .graphicsInfo{
+        height: 350px;
+        width: 80%;
+        margin-top: 30px;
+        background-color: #dcdce0;
+        border-radius: 12px;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        box-shadow: #2d2c30 5px 5px 2px;
+    }
+    
+   
+   
+    
+    .graphics h2{
+   
+    font-size: 30px;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+   
+            }
+    
+    .graphline{
+    height: 85%;
+    width: 100%;
+    margin-bottom: 20px;
+    
+    }
+
+    .chart{
+    margin-top: 20px;
+
+    }
+    
+.div_selects{
+    
+height: 180px;
+width: auto;
+display: flex;
+flex-direction:row;
+justify-content: space-between;
+align-items: center;
+margin: 100px;
+margin-top: 0px;
+margin-bottom: 10px;
+}
+
+   .div_selects select{
+    
+        width:150px;   
+        margin: 10px;
+        border: 1px solid #FFFFFF;
+        box-sizing: border-box;
+        border-radius: 10px;
+        
+        height: 45px; 
+        background: url(../../Site/img/seta-para-baixo.png) no-repeat #2d2c30;  /* Imagem de fundo (Seta) */      
+        width: 250px;
+        font-size:20px;
+        padding:8px 20px 13px 12px;  
+        color:#fff;  
+    }
+
+    @media (max-width:900px) {
+      .div_selects{
+        display: flex;
+        flex-direction:column;
+      }
+      .div_selects select{
+      width:150px ;
+      margin: 0 ;
+      }
+    }
+
+   

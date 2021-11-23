@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../../img/InView apenas logo.png">
+  <title>
+    Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/01c835c768.js" crossorigin="anonymous"></script>
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="../assets/css/black-dashboard.min.css" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/alert.css">
+  <!-- <link rel="stylesheet" href="../assets/css/dashReal.css"> -->
+
+</head>
+
+<body class="" onload="inicio()">
+  <div class="wrapper">
+    <div class="sidebar">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
+    -->
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="javascript:void(0)" class="simple-text logo-mini">
+            <img src="../../img/seer_letra_branca.png" alt="">
+          </a>
+          <a href="javascript:void(0)" class="simple-text logo-normal">
+            Seer
+          </a>
+        </div>
+        <ul class="nav">
+
+          <li>
+            <a href="../../escolherMaquina/escolherMaquinaHtml/escolherMaquina.html">
+              <i class=" fas fa-laptop-code"></i>
+              <p>Escolher máquinas</p>
+            </a>
+          </li>
+
+          <li class="active">
+            <a href="../../dashboard em tempo real/Dashboard/dashboard.html">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Dashboard ao vivo</p>
+            </a>
+          </li>
+
+          <li>
+            <a href="../../dashboard Gestor/dashboardGestor/dashboard.html">
+              <i class="tim-icons icon-chart-bar-32"></i>
+              <p>Dashboard métricas</p>
+            </a>
+          </li>
+
+
+          <li>
+            <a href="../../cadastroMaquina.html">
+              <i class="tim-icons icon-laptop"></i>
+              <p>Cadastro Máquina</p>
+            </a>
+          </li>
+          <li>
+            <a href="../../cadastroFuncionarioGestor.html">
+              <i class="tim-icons icon-single-02"></i>
+              <p>Cadastro funcionário</p>
+            </a>
+          </li>
+
+          <div class="btn_logout" onclick="logoff()">
+            <li>
+              <a>
+                <i class="fas fa-sign-out-alt"></i>
+                <p>Log-out</p>
+              </a>
+            </li>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle d-inline">
+
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+
+            </div>
+            <!-- <a class="navbar-brand" href="javascript:void(0)"> <b style="font-size: 110%;">Dashboard<br> tempo real</b> </a> -->
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"> </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navigation">
+            <div class="collapse navbar-collapse" id="navigation">
+              <ul class="navbar-nav ml-auto">
+              </ul>
+            </div>
+          </div>
+      </nav>
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-6">
+
+            <div class="card card-chart">
+              <div class="card-header ">
+                <div class="row">
+                  <div class="col-sm-6 text-left">
+                    <h5 class="card-category" id="textoCpu">Frequência diária CPU</h5>
+                    <h2 class="card-title" id="h2_cpu">CPU:<span class="span_cpu" id="span_cpu"></span> </h2>
+                  </div>
+                  <div class="col-sm-6">
+
+                  </div>
+                </div>
+              </div>
+              <div class="card-body" id="cpu_info">
+                <div class="chart-area" style="height: 100%;">
+                  <canvas id="donutCPU"></canvas>
+                </div>
+              </div>
+              <div class="div_pai_porcentagem_cpu">
+                <div class="barra_porcentagem_cpu" id="barra_uso_cpu">
+                  <span id="texto_uso_cpu"></span>
+                </div>
+              </div>
+            </div>
+            <!-- ----------------------------------------------  BARRA DE PORCENTAGEM DE USO DOS COMPONENTES DA DASH  -------------------------------------------------->
+          </div>
+          <div class="col-6" id="scada_info">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category" id="textoDisco">Status Scada</h5>
+
+                <div class="img_scada">
+                  <img src="../../img/SCADA.png" alt="">
+                </div>
+                <h3 class="card-scada" id="texto_processo">Software Scada</h3>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6" id="ram_info">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category" id="textoRam">Frequência diária RAM</h5>
+                <h3 class="card-title" id="h2_ram">RAM:<span class="span_ram" id="span_ram"></span> </h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-area" style="height: 100%;" id="ram_porcentagem">
+                  <canvas id="donutRAM"></canvas>
+                </div>
+              </div>
+              <div class="div_pai_porcentagem_ram">
+                <div class="barra_porcentagem_ram" id="barra_uso_ram">
+                  <span id="texto_uso_ram"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6" id="disco_info">
+            <div class="card card-chart">
+              <div class="card-header">
+                <h5 class="card-category" id="textoDisco">Frequência diária Disco</h5>
+                <h3 class="card-title" id='h2_disco'> DISCO:<span class="span_disco" id="span_disco"></span> </h3>
+              </div>
+              <div class="card-body">
+                <div class="chart-area" style="height: 100%;">
+                  <canvas id="donutDisc"></canvas>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="id_alert"style="display: none">
+      
+    <div class="alerta" >
+      <i class="fas fa-exclamation-triangle"></i> 
+      <div id="texto_alerta"  >
+      </div>
+    </div>
+  </div>
+
+  <div id="id_alert_critico" style="display: none">
+    <div class="alerta_critico">
+     
+    <i class="fas fa-exclamation-triangle"></i>
+     <div id="texto_alerta_critico">
+       
+     </div>
+   </div> 
+
+  </div>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+  <!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/chart.js">
+
+
+
+
+
+
+  </script>
+  <script>
+    $(document).ready(function () {
+      $().ready(function () {
+        $sidebar = $('.sidebar');
+        $navbar = $('.navbar');
+        $main_panel = $('.main-panel');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+        sidebar_mini_active = true;
+        white_color = false;
+
+        window_width = $(window).width();
+
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+        $('.fixed-plugin a').click(function (event) {
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .background-color span').click(function () {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data', new_color);
+          }
+
+          if ($main_panel.length != 0) {
+            $main_panel.attr('data', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data', new_color);
+          }
+        });
+
+        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
+          var $btn = $(this);
+
+          if (sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            sidebar_mini_active = false;
+            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+          } else {
+            $('body').addClass('sidebar-mini');
+            sidebar_mini_active = true;
+            blackDashboard.showSidebarMessage('Sidebar mini activated...');
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function () {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function () {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+        });
+
+        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
+          var $btn = $(this);
+
+          if (white_color == true) {
+
+            $('body').addClass('change-background');
+            setTimeout(function () {
+              $('body').removeClass('change-background');
+              $('body').removeClass('white-content');
+            }, 900);
+            white_color = false;
+          } else {
+
+            $('body').addClass('change-background');
+            setTimeout(function () {
+              $('body').removeClass('change-background');
+              $('body').addClass('white-content');
+            }, 900);
+
+            white_color = true;
+          }
+
+
+        });
+
+        $('.light-badge').click(function () {
+          $('body').addClass('white-content');
+        });
+
+        $('.dark-badge').click(function () {
+          $('body').removeClass('white-content');
+        });
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "black-dashboard-free"
+      });
+  </script>
+</body>
+
+</html>
+
+<script>
+
+  let login_usuario = sessionStorage.login_usuario_meuapp;
+
+  function logoff() {
+    finalizar_sessao();
+    sessionStorage.clear();
+    redirecionar_login();
+  }
+
+  function finalizar_sessao() {
+    fetch(`/usuarios/sair/${login_usuario}`, { cache: 'no-store' });
+  }
+
+  function redirecionar_login() {
+    window.location.href = '../../login.html';
+  }
+
+  var valores = []
+  var maquina = sessionStorage.id_maquina_meuapp;
+
+  var corCPU = ['rgba(0, 255, 162)','rgba(54, 54, 54)']
+  var donutChartCPU;
+
+  function donutCPU(resposta) {
+    var donutCPUDataset = [{
+      label: 'My First Dataset',
+      data: [resposta.cpu_porcentagem, (100 - resposta.cpu_porcentagem)],
+      backgroundColor: corCPU,
+      hoverOffset: 4
+    }]
+    var donutCPULabel = [
+      'Em Uso',
+      'Livre'
+    ]
+
+    const dataDonutCPU = {
+      labels: donutCPULabel,
+      datasets: donutCPUDataset
+    };
+
+    const config = {
+      type: 'doughnut',
+      data: dataDonutCPU
+    };
+    const contextotDonutCPU = document.getElementById("donutCPU").getContext('2d');
+
+    donutChartCPU = new Chart(contextotDonutCPU, config)
+
+    span_cpu.innerHTML = `${resposta.cpu_porcentagem}%`;
+
+  }
+
+
+
+  function recuperar_medidas_cpu() {
+    console.log(maquina)
+    fetch(`/leituras/leitura_tempo_real_cpu/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta)}`);
+          console.log("resposta: ", resposta);
+
+            valores.push(resposta);
+            donutCPU(resposta);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+  }
+
+
+  var corRAM = ['rgba(0, 255, 162)','rgba(54, 54, 54)']
+  var donutChartRAM;
+  function donutRAM(resposta) {
+
+    var donutRAMDataset = [{
+      label: 'My First Dataset',
+      data: [resposta.ram_porcentagem, (100 - resposta.ram_porcentagem)],
+      backgroundColor: corRAM,
+      hoverOffset: 4
+    }]
+    var donutRAMLabel = [
+      'Em Uso',
+      'Livre'
+    ]
+
+    const dataDonutRAM = {
+      labels: donutRAMLabel,
+      datasets: donutRAMDataset
+    };
+
+    const configRAM = {
+      type: 'doughnut',
+      data: dataDonutRAM
+    };
+    const contextotDonutRAM = document.getElementById("donutRAM").getContext('2d');
+
+    donutChartRAM = new Chart(contextotDonutRAM, configRAM)
+
+    span_ram.innerHTML = `${resposta.ram_porcentagem}%`;
+  }
+
+  function recuperar_medidas_ram() {
+    fetch(`/leituras/leitura_tempo_real_ram/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta)}`);
+          console.log("resposta: ", resposta);
+          valores.push(resposta);
+          donutRAM(resposta);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+  }
+
+
+  var corDisco = ['rgba(0, 255, 162)','rgba(54, 54, 54)']
+  var donutChartDisc;
+  function donutDISCO(resposta) {
+
+    var donutDiscDataset = [{
+      label: 'My First Dataset',
+      data: [resposta.disco_porcentagem, (100 - resposta.disco_porcentagem)],
+      backgroundColor: corDisco,
+      hoverOffset: 4
+    }]
+
+    var donutDiscLabel = [
+      'Em Uso',
+      'Livre'
+    ]
+
+    const dataDonutDisc = {
+      labels: donutDiscLabel,
+      datasets: donutDiscDataset
+    };
+
+    const configDisc = {
+      type: 'doughnut',
+      data: dataDonutDisc
+    };
+
+    const contextotDonutDisc = document.getElementById("donutDisc").getContext('2d');
+
+    donutChartDisc = new Chart(contextotDonutDisc, configDisc)
+
+    span_disco.innerHTML = `${resposta.disco_porcentagem}%`
+  }
+
+
+  function recuperar_medidas_disco() {
+
+    fetch(`/leituras/leitura_tempo_real_disco/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta)}`);
+          console.log("resposta: ", resposta);
+          valores.push(resposta);
+          donutDISCO(resposta);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+  }
+
+
+  function ver_processo(resposta) {
+    texto_processo.innerHTML = ` Status: ${resposta.status_processo}`;
+
+  }
+
+  function recuperar_status() {
+
+    fetch(`/leituras/leitura_tempo_real_status/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta)}`);
+          console.log("resposta: ", resposta);
+          ver_processo(resposta);
+          valores.push(resposta);
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+  }
+
+</script>
+
+
+
+<script>
+  // parte da barra 
+
+  function barraCpu(resposta) {
+    if(resposta.cpu_freq!=null){
+      barra_uso_cpu.style.width = `${resposta.cpu_freq} %`;
+      texto_uso_cpu.innerHTML = `${resposta.cpu_freq} GHz`;
+    }else{
+      barra_uso_cpu.style.width = `100%`;
+      texto_uso_cpu.innerHTML = ` 0 GHz`;
+    }
+  }
+
+  function recuperar_uso_cpu() {
+    console.log(maquina)
+    fetch(`/leituras/leitura_tempo_real_freq_cpu/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta)}`);
+          console.log("resposta: ", resposta);
+          valores.push(resposta);
+          barraCpu(resposta);
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+  }
+
+  function barraRam(resposta) {
+    if(resposta.ram_uso!=null){
+      barra_uso_ram.style.width = `${resposta.ram_porcentagem}%`;
+      texto_uso_ram.innerHTML = `${resposta.ram_uso} GB`;
+    }else{
+      barra_uso_ram.style.width = `100%`;
+      texto_uso_ram.innerHTML = `0 GB`;
+    }
+  }
+
+  function recuperar_uso_ram() {
+    console.log(maquina)
+    fetch(`/leituras/leitura_tempo_real_uso_ram/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta)}`);
+          console.log("resposta: ", resposta);
+          valores.push(resposta);
+          barraRam(resposta);
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+  }
+
+
+  function geracao_alertas(lista_valores) {
+    console.log('lista:', lista_valores);
+    const alerta_cpu_porcentagem = 70.0;
+    const alerta_cpu_porcentagem_perigo = 85.0;
+    
+    const alerta_disco_porcentagem = 70.0;
+    const alerta_disco_porcentagem_perigo = 90.0;
+
+    const alerta_ram_porcentagem = 60.0;
+    const alerta_ram_porcentagem_perigo = 75.0;
+    
+    if (lista_valores.cpu_porcentagem >= alerta_cpu_porcentagem_perigo) {
+      
+      id_alert_critico.style.display = "block";
+      texto_alerta_critico.innerHTML = "Porcentagem da CPU CRÍTICA";
+
+    } else if (lista_valores.cpu_porcentagem < alerta_cpu_porcentagem_perigo && lista_valores.cpu_porcentagem >= alerta_cpu_porcentagem) {
+      
+      id_alert.style.display = "block";
+      texto_alerta.innerHTML = "Porcentagem da CPU ALTA";
+    }
+
+    else if (lista_valores.disco_porcentagem >= alerta_disco_porcentagem_perigo) {
+    
+      id_alert_critico.style.display = "block";
+      texto_alerta_critico.innerHTML = "Porcentagem de Disco CRÍTICA";
+      
+    } else if (lista_valores.disco_porcentagem < alerta_disco_porcentagem_perigo && lista_valores.disco_porcentagem >= alerta_disco_porcentagem) {
+     
+      id_alert.style.display = "block";
+      texto_alerta.innerHTML = "Porcentagem de Disco ALTA";
+    }
+
+    else if (lista_valores.ram_porcentagem >= alerta_ram_porcentagem_perigo) {
+      
+      id_alert_critico.style.display = "block";
+      texto_alerta_critico.innerHTML = "Porcentagem de Ram CRÍTICA";
+      
+    } else if (lista_valores.ram_porcentagem < alerta_ram_porcentagem_perigo && lista_valores.ram_porcentagem >= alerta_ram_porcentagem) {
+      
+      id_alert.style.display = "block";
+      texto_alerta.innerHTML = "Porcentagem de Ram ALTA";
+    }
+
+
+    else if (lista_valores.status_processo != "Ativo") {
+      
+      id_alert_critico.style.display = "block";
+      texto_alerta_critico.innerHTML = "PROCESSO PARADO"
+    }
+
+    else{
+      id_alert_critico.style.display ="none";
+      id_alert.style.display ="none";
+
+
+    }
+    valores = [];
+  }
+
+
+
+
+  function atualizacao_graficos() {
+    fetch(`/leituras/leitura_tempo_real/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta)}`);
+          console.log("resposta: ", resposta);
+          valores.push(resposta);
+          
+          if(resposta.cpu_porcentagem!=null){
+            var data = donutChartCPU.config.data;
+            data.datasets[0].data = [resposta.cpu_porcentagem, (100 - resposta.cpu_porcentagem)];
+            donutChartCPU.update();
+            span_cpu.innerHTML = `${resposta.cpu_porcentagem}%`;
+          }else{
+            var data = donutChartCPU.config.data;
+            data.datasets[0].data = [0, (100 - 0)];
+            donutChartCPU.update();
+            span_cpu.innerHTML = `${0}%`;
+          }
+
+          if(resposta.ram_porcentagem!=null){
+            var data = donutChartRAM.config.data;
+            data.datasets[0].data = [resposta.ram_porcentagem, (100 - resposta.ram_porcentagem)];
+            donutChartRAM.update();
+            span_ram.innerHTML = `${resposta.ram_porcentagem}%`;
+          }else{
+            var data = donutChartRAM.config.data;
+            data.datasets[0].data = [0, (100 - 0)];
+            donutChartRAM.update();
+            span_ram.innerHTML = `${0}%`;
+          }
+
+          if(resposta.disco_porcentagem!=null){
+            var data = donutChartDisc.config.data;
+            data.datasets[0].data = [resposta.disco_porcentagem, (100 - resposta.disco_porcentagem)];
+            donutChartDisc.update();
+            span_disco.innerHTML = `${resposta.disco_porcentagem}%`;
+          }else{
+            var data = donutChartDisc.config.data;
+            data.datasets[0].data = [0, (100 - 0)];
+            donutChartDisc.update();
+            span_disco.innerHTML = `${0}%`;
+          }
+
+          ver_processo(resposta);
+          barraCpu(resposta);
+          barraRam(resposta);
+
+          valores = resposta;
+          geracao_alertas(valores);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+    setTimeout(() => atualizacao_graficos(), 5000);
+  }
+
+  function recuperar_componentes(){
+    fetch(`/leituras/componentes/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Componentes recuperados: ${JSON.stringify(resposta)}`);
+          var componentes = [1,2,3,4,5,6]
+          for(var i=0;i<resposta.length;i++){
+            componentes.splice(componentes.indexOf(resposta[i].fk_componente), 1);
+          }
+          console.log(`COMPONEnTES AQUI!!!!!!!: ${componentes}`);
+          for(var i=0;i<componentes.length;i++){
+            switch (componentes[i]){
+                case 1:
+                  corCPU=['rgba(0, 255, 162, 0.2)','rgba(54, 54, 54, 0.2)'];
+                  document.getElementById('h2_cpu').style.color = 'rgba(255,255,255,0.2)';
+                  document.getElementById('span_cpu').style.color = 'rgba(255,255,255,0.2)';
+                  break;
+                case 2:
+                   document.getElementById('barra_uso_cpu').style.backgroundColor='rgba(0, 255, 162, 0.2)';
+                  break;
+                case 3:
+                  corDisco=['rgba(0, 255, 162, 0.2)','rgba(54, 54, 54, 0.2)'];
+                  document.getElementById('h2_disco').style.color = 'rgba(255,255,255,0.2)';
+                  document.getElementById('span_disco').style.color = 'rgba(255,255,255,0.2)';
+                  break;
+                case 4:
+                  corRAM=['rgba(0, 255, 162, 0.2)','rgba(54, 54, 54, 0.2)'];
+                  document.getElementById('h2_ram').style.color = 'rgba(255,255,255,0.2)';
+                  document.getElementById('span_ram').style.color = 'rgba(255,255,255,0.2)';
+                  break;
+                case 5:
+                   document.getElementById('barra_uso_ram').style.backgroundColor='rgba(0, 255, 162, 0.2)';
+                  break;
+                case 6:
+                  document.getElementById('scada_info').style.display='none'
+                  break;
+              }
+            }
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+  }
+
+  function inicio() {
+    recuperar_componentes();
+    recuperar_medidas_cpu();
+    recuperar_medidas_ram();
+    recuperar_medidas_disco();
+    recuperar_status();
+    recuperar_uso_cpu();
+    recuperar_uso_ram();
+    atualizacao_graficos();
+  }
+</script>

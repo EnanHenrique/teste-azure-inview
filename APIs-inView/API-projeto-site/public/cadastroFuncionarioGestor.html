@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastroFuncionario.css">
+    <link rel="shortcut icon" href="./img/InView apenas logo.png" type="image/x-icon">
+    <title>InView - Cadastro funcionário</title>
+</head>
+
+<body onload="verificar_usuario()">
+
+    <!-- Inicio cadastro funcionario-->
+
+    <div class="container_cadastro_funcionario">
+
+        <div class="lado_esquerdo_cadastro_funcionario">
+            <a href="./index.html">
+                <img class="img_logo_cadastro_funcionario" src="./img/InView apenas logo branco.png"
+                    alt="Logo da empresa InView">
+            </a>
+            <div class="lado_esquerdo_h3_cadastro_funcionario">
+                <h3>InView</h3>
+            </div>
+        </div>
+
+
+        <div class="lado_direito_cadastro_funcionario">
+            <div class="lado_direito_h1_cadastro_funcionario">
+                <div class="div_h1_cadastro_funcionario">
+                    <h1>Cadastre o funcionário</h1>
+                </div>
+            </div>
+
+            <div class="lado_direito_input_cadastro_funcionario">
+                <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                    <input name="name_nome" placeholder="Nome do funcionário" type="text" class="inputNome">
+                    <input name="name_login" id="login" placeholder="Login" class="inputEmail">
+                    <input name="name_telefone" placeholder="Telefone" type="tel" class="inputTelefone">
+                    <input name="name_senha" id="input_senha" placeholder="Senha" type="password">
+                    <input id="confirma_senha" placeholder="Confirmar Senha" type="password" class="inputSenha">
+                </form>
+                <button onclick="verificar_cadastro_funcionario()">CADASTRAR</button>
+                <button onclick="logoff()" id="botao_sair" style="display: none;">SAIR</button>
+                <button onclick="trocar_pagina()" id="botao_voltar" style="display: none;">VOLTAR</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Fim cadastro funcionario-->
+
+    <script src="funcoes.js"></script>
+
+</body>
+
+</html>
+
+<script>
+
+    function verificar_cadastro_funcionario() {
+        var login = document.getElementById('login').value;
+        var senha = input_senha.value;
+
+        if (login.length < 8) {
+            alert("E-mail deve ter no mínimo 8 caracteres.");
+        }
+        else if (login.indexOf("@") < 1) {
+            alert("E-mail deve conter '@'.");
+        }
+        else if (login.indexOf(".com") < 1) {
+            alert("E-mail deve conter .com");
+        }
+        else if (senha.length < 4) {
+            alert("A senha deve ter no mínimo 4 caracteres");
+        }
+        else {
+            cadastrar();
+        }
+    }
+
+    function cadastrar() {
+        //aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        var id_cadastro_empresa = sessionStorage.id_cadastro_empresa_meuapp;
+        var id_cadastro_funcionario = sessionStorage.id_cadastro_funcionario_meuapp;
+
+        fetch(`/usuarios/cadastrar_funcionario/${id_cadastro_empresa}/${id_cadastro_funcionario}`, {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+                alert("Funcionario cadastrado com sucesso!");
+                //window.location.href = 'login.html';
+
+            } else {
+
+                console.log('Erro de cadastro de funcionario!');
+                //response.text().then(function (resposta) {
+                //div_erro.innerHTML = resposta;
+                //});
+                //finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+
+    function verificar_usuario() {
+        var id_cadastro_funcionario = sessionStorage.id_cadastro_funcionario_meuapp;
+
+        if (id_cadastro_funcionario != "undefined") {
+            botao_voltar.style.display = "block";
+            botao_sair.style.display = "none";
+        } else {
+            botao_voltar.style.display = "none";
+            botao_sair.style.display = "block";
+        }
+
+    }
+
+    function trocar_pagina() {
+        window.location.href = './escolherMaquina/escolherMaquinaHtml/escolherMaquina.html';
+    }
+
+</script>

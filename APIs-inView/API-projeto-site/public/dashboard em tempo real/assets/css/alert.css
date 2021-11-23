@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&display=swap');
+*{
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15   px;
+}
+.alerta_critico{
+background-color: #fc9f95;
+color: #dd0000;
+height: 7vh;
+width: 40%;
+border-radius: 5px;
+border: #dd0000 solid 1px;
+position: absolute;
+top: 2%;
+left: 38%;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1;
+}
+
+.alerta{
+    background-color: #f5f7b2;
+    color: #9a9c0c;
+    height: 7vh;
+    width: 40%;
+    border-radius: 5px;
+    border: #9a9c0c solid 1px;
+    position: fixed;
+    top: 2%;
+    left: 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    z-index: 1;
+}

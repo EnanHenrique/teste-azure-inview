@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styleCadastro.css">
+    <link rel="shortcut icon" href="./img/InView apenas logo.png" type="image/x-icon">
+    <title>InView - Cadastro</title>
+</head>
+
+<body>
+
+    <!-- Inicio Cadastro -->
+
+    <div class="div_container_cadastro">
+
+        <div class="div_esquerda_cadastro">
+            <a href="./index.html"> <img class="img_logo_cadastro" src="./img/InView apenas logo branco.png"
+                    alt="Logo da empresa InView"> </a>
+            <div class="div_esquerda_h3_cadastro">
+                <h3>InView</h3>
+            </div>
+        </div>
+
+        <div class="div_direita_cadastro">
+            <div class="div_direita_h1_cadastro">
+                <div class="div_h1_cadastro">
+                    <h1>Cadastre-se</h1>
+                </div>
+            </div>
+            <div class="div_direita_input_cadastro">
+                <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                    <input name="name_nome_empresa" placeholder="Nome da Empresa" type="text" class="inputNome">
+                    <input name="name_cnpj" placeholder="CNPJ" type="text" class="inputCnpj">
+                    <input name="name_telefone" placeholder="Telefone" type="tel" class="inputTelefone">
+                    <input id="id_email" name="name_email" placeholder="Email" type="email" class="inputEmail">
+                    <input id="id_senha" name="name_senha" placeholder="Senha" type="password" class="inputSenha">
+                    <input placeholder="Confirmar Senha" type="password" class="inputSenha">
+                    <input name="name_cep" placeholder="CEP" type="text" class="inputSenha">
+                    <input name="name_logradouro" placeholder="Logradouro" type="text" class="inputEnd">
+                    <input name="name_numero" placeholder="Número" type="text" class="inputEnd">
+                    <input name="name_uf" placeholder="UF" type="text" class="inputEnd">
+                    <input name="name_cidade" placeholder="Cidade" type="text" class="inputEnd">
+                    <input name="name_bairro" placeholder="Bairro" type="text" class="inputEnd">
+                </form>
+                
+                <button id="btn_entrar" type="submit" class="btnCadastrar" onclick="verificar_cadastro()"> CADASTRAR
+                </button>
+                <!-- onclick="verificar_cadastro() -->
+                <a href="login.html">Já possui cadastro? <br> <u> Clique aqui. </u> </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fim Cadastro -->
+
+
+</body>
+
+</html>
+
+<script>
+
+    function verificar_cadastro() {
+        var email = id_email.value;
+        var senha = id_senha.value;
+
+        if (email.length < 8) {
+            alert("E-mail deve ter no mínimo 8 caracteres.");
+        }
+        else if (email.indexOf("@") < 1) {
+            alert("E-mail deve conter '@'.");
+        }
+        else if (email.indexOf(".com") < 1) {
+            alert("E-mail deve conter .com");
+        }
+        else if (senha.length < 4) {
+            alert("A senha deve ter no mínimo 4 caracteres");
+        }
+        else {
+            cadastrar();
+        }
+    }
+
+    function cadastrar() {
+        //aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+
+                window.location.href = 'login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                //response.text().then(function (resposta) {
+                //div_erro.innerHTML = resposta;
+                //});
+                //finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+
+
+</script>

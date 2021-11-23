@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,700&display=swap');
+/* Configurações gerais */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+input {
+  outline: 0;
+  border: 0 none;
+  border-radius: 12px;
+}
+
+textarea {
+  outline: 0;
+}
+
+                                                /* Início Página de login */
+
+.div_container_login {
+  /*margin: 1vh auto;*/
+  width: 100%;
+}
+
+.div_esquerda_login {
+  float: left;
+  height: 100vh;
+  width: 35.5%;
+  background-color: #2d2c30;
+}
+
+.div_esquerda_login h3 {
+  word-wrap: break-word;
+}
+
+.div_esquerda_h3_login {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 5%;
+  color: #f5f5f5;
+  font-size: 200%;
+  height: 20%;
+  width: 100%;
+}
+
+.img_logo_login {
+  margin-left: 25%;
+  margin-top: 16vh;
+  width: 50%;
+}
+
+.div_esquerda_login img {
+  transition: 0.5s;
+}
+
+.div_esquerda_login img:hover {
+  opacity: 55%;
+}
+/*
+.div_meio_login {
+  float: left;
+  height: 98vh;
+  width: 2%;
+  background-color: #2d2c30;
+}
+*/
+
+.div_direita_login {
+  min-width: 30%;
+  background-image: url("../img/sala-monitoramento-graficos.png");
+  background-size: cover; /* auto */
+  background-color: #0B3338;
+  float: right;
+  height: 100vh;
+  width: 63.5%;
+}
+
+.div_direita_login h1 {
+  transition: 0.5s;
+}
+
+.div_direita_login h1:hover {
+  transform: scale(1.05);
+}
+
+.div_direita_h1_login {
+  text-align: center;
+  font-weight: normal;
+  margin-top: 12vh;
+  color: #F3F3F3;
+  font-size: 160%;
+  height: 20%;
+  width: 100%;
+}
+
+.div_direita_login button {
+  margin-bottom: 2vh;
+  border-radius: 25px;
+  background-color: #f5f5f5;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  font-size: 110%;
+  height: 6vh;
+  margin-top: 5%;
+  min-width: 35%;
+  margin-left: 33.5%;
+}
+
+.div_direita_login button:hover {
+  border: solid 2px #0388fc;
+  background-color: #2d2c30;
+  color: #f5f5f5;
+  transform: scale(1.05);
+}
+
+.div_direita_login button:active {
+  outline: 0;
+}
+
+.div_direita_input_login input:hover {
+  border: solid 2px #F3F3F3;
+  background-color: #2d2c30;
+  color: #F3F3F3;
+}
+
+.div_direita_input_login {
+  margin-top: 5vh;
+}
+
+.div_direita_input_login input {
+  transition: 0.3s;
+  font-size: 150%;
+  display: block;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 3%;
+  padding: 0.5%;
+  border-radius: 15px;
+  padding-left: 20px;
+}
+
+.div_direita_input_login input::placeholder {
+  padding-left: 3%;
+  font-size: 80%;
+}
+
+.div_direita_login a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: #F3F3F3;
+  margin-left: 42%;
+  font-size: 20px;
+  cursor: auto;
+}
+
+.div_direita_login u {
+  transition: 0.3s;
+  margin-left: 46%;
+  cursor: pointer;
+}
+
+.div_direita_login u:hover {
+  opacity: 50%;
+}
+
+.boneco_login_img {
+  height: 80%;
+  width: 80%;
+  border-radius: 30px;
+}
+
+.div_boneco_login {
+  position: fixed;
+  margin-left: 10.5%;
+  height: 8%;
+  width: 4%;
+}
+
+.div_h1_login {
+  border: solid 3px #0388fc;
+  text-align: center;
+  height: 10vh;
+  width: 25vh;
+  margin-left: 38%;
+}
+
+#div_erro {
+  display: none;
+  color: #f5f5f5;
+  font-size: 3vh;
+  margin-top: 2vh;
+  margin-left: 21vw;
+}
+
+@media only screen and (max-width: 700px) {
+  .div_direita_login button {
+    width: 41%;
+  }
+  .div_direita_login a {
+    font-size: 15px;
+    margin-left: 30%;
+  }
+  .div_direita_login u {
+    margin-left: 45%;
+  }
+  .div_h1_login {
+    width: 60%;
+    margin-left: 21%;
+    height: 13vh;
+  }
+  .img_logo_login {
+    margin-left: 30%;
+    margin-top: 1vh;
+    width: 40%;
+    height: 20vh;
+  }
+  .div_esquerda_login {
+    width: 100%;
+    height: 30vh;
+  }
+  .div_meio_login {
+    display: none;
+  }
+  .div_direita_login {
+    width: 100%;
+    height: 71vh;
+  }
+  .div_container_login {
+    width: 100%;
+    margin: 0;
+    height: 100%;
+  }
+  .div_esquerda_h3_login {
+    font-size: 100%;
+  }
+  .div_direita_h1_login {
+    margin-top:4vh;
+  }
+}
+
+/* Fim Página de login */

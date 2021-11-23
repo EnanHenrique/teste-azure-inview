@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="./img/InView apenas logo.png" type="image/x-icon">
+    <title>InView - Login</title>
+</head>
+
+<body>
+
+    <!-- Inicio Login -->
+
+    <div class="div_container_login">
+
+        <div class="div_esquerda_login">
+            <a href="./index.html"> <img class="img_logo_login" src="./img/InView apenas logo branco.png"
+                    alt="Logo da empresa InView"> </a>
+            <div class="div_esquerda_h3_login">
+                <h3>InView</h3>
+            </div>
+        </div>
+
+        <div class="div_direita_login">
+            <div class="div_direita_h1_login">
+                <div class="div_h1_login">
+                    <h1>Login</h1>
+                </div>
+            </div>
+            <div class="div_direita_input_login">
+                <form id="form_login" method="post" onsubmit="return entrar()">
+                    <!-- <div class="div_boneco_login"> <img class="boneco_login_img" src="./img/boneco_login.png" alt=""> </div> -->
+                    <input name="email" class="input_email" id="input_email" placeholder="E-mail" type="text">
+                    <br>
+                    <!-- <div class="div_img_senha"> <img class="img_senha" src="" > </div> -->
+                    <input name="senha" id="input_senha" placeholder="Senha" type="password">
+                </form>
+                <button onclick="verificar_login()">ENTRAR</button>
+                <div id="div_erro"> E-mail e/ou senha inválidos! </div>
+            </div>
+            <br>
+            <a href="cadastro.html">Não possui cadastro? <br> <u> Clique aqui. </u> </a>
+
+        </div>
+
+    </div>
+
+    <!-- Fim Login -->
+
+</body>
+
+</html>
+
+<script>
+    //Verificacao de campos login
+    function verificar_login() {
+        var email = input_email.value;
+        var senha = input_senha.value;
+
+        if (email.length < 8) {
+            alert("E-mail deve ter no mínimo 8 caracteres.");
+        }
+        else if (email.indexOf("@") < 1) {
+            alert("E-mail deve conter '@'.");
+        }
+        else if (email.indexOf(".com") < 1) {
+            alert("E-mail deve conter .com");
+        }
+        else if (senha.length < 4) {
+            alert("A senha deve ter no mínimo 4 caracteres");
+        }
+        else {
+            entrar();
+        }
+    }
+    
+    function entrar() {
+        //aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.email;
+                    sessionStorage.id_cadastro_empresa_meuapp = json.id_cadastro_empresa;
+                    sessionStorage.id_cadastro_funcionario_meuapp = json.id_cadastro_funcionario;
+
+                    window.location.href = 'cadastroFuncionarioGestor.html';
+                });
+
+
+            } else {
+                var id_cadastro_empresa = sessionStorage.id_cadastro_empresa_meuapp;
+                fetch("/usuarios/autenticar/funcionario", {
+                    method: "POST",
+                    body: formulario
+                }).then(resposta => {
+
+                    if (resposta.ok) {
+
+                        resposta.json().then(json => {
+
+                            sessionStorage.login_usuario_meuapp = json.login;
+                            sessionStorage.id_cadastro_empresa_meuapp = json.fk_empresa;
+                            sessionStorage.id_cadastro_funcionario_meuapp = json.id_cadastro_funcionario;
+                            sessionStorage.nome_funcionario_meuapp = json.nome;
+
+                            window.location.href = './escolherMaquina/escolherMaquinaHtml/escolherMaquina.html';
+                        });
+
+
+                    } else {
+
+                        console.log('Erro de login do funcionario!');
+
+                        div_erro.style.display = "block";
+                        div_erro.innerHTML = "E-mail e/ou senha inválidos!";
+                        //resposta.text().then(texto => {
+                        //console.error(texto);
+                        //finalizar_aguardar(texto);
+                        //});
+                    }
+                });
+
+                return false;
+            }
+        });
+
+        return false;
+    }
+
+
+</script>

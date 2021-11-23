@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,700&display=swap');
+/* Configurações gerais */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+input {
+  outline: 0;
+  border: 0 none;
+  border-radius: 12px;
+}
+
+textarea {
+  outline: 0;
+}
+
+ /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* / Track / */
+::-webkit-scrollbar-track {
+  background: rgba(188, 202, 228, 0.19); 
+}
+ 
+/* / Handle / */
+::-webkit-scrollbar-thumb {
+  background: #0388fc;
+  border-radius: 100pc;
+}
+
+/* / Handle on hover */ */
+::-webkit-scrollbar-thumb:hover {
+    background: #006ecf; 
+  }
+
+                                                /* Início Página de login */
+
+.div_container_cadastro {
+  /*margin: 1vh auto;*/
+  width: 100%;
+}
+
+.div_esquerda_cadastro {
+  float: left;
+  height: 100vh;
+  width: 35.5%;
+  background-color: #2d2c30;
+}
+
+.div_esquerda_cadastro h3 {
+  word-wrap: break-word;
+}
+
+.div_esquerda_h3_cadastro {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 5%;
+  color: #f5f5f5;
+  font-size: 200%;
+  height: 20%;
+  width: 100%;
+}
+
+.img_logo_cadastro {
+  margin-left: 25%;
+  margin-top: 16vh;
+  width: 50%;
+}
+
+.div_esquerda_cadastro img {
+  transition: 0.5s;
+}
+
+.div_esquerda_cadastro img:hover {
+  opacity: 55%;
+}
+/*
+.div_meio_cadastro {
+  float: left;
+  height: 98vh;
+  width: 2%;
+  background-color: #2d2c30;
+}
+*/
+
+.div_direita_cadastro {
+  min-width: 30%;
+  background-image: url("../img/sala-monitoramento-graficos.png");
+  background-size: cover; /* auto */
+  background-color: #0B3338;
+  float: right;
+  width: 63.5%;
+  height: 100vh;
+}
+
+.div_direita_cadastro h1 {
+    min-width: 50%;
+  transition: 0.5s;
+}
+
+.div_direita_cadastro h1:hover {
+  transform: scale(1.05);
+}
+
+.div_direita_h1_cadastro {
+  text-align: center;
+  font-weight: normal;
+  margin-top: 2vh;
+  color: #F3F3F3;
+  font-size: 120%;
+  height: 15vh;
+  width: 100%;
+}
+
+.div_direita_cadastro button {
+  margin-bottom: 2vh;
+  border-radius: 25px;
+  background-color: #f5f5f5;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  font-size: 110%;
+  height: 6vh;
+  min-width: 35%;
+  margin-left: 33.5%;
+}
+
+.div_direita_cadastro button:hover {
+  border: solid 2px #0388fc;
+  background-color: #2d2c30;
+  color: #f5f5f5;
+  transform: scale(1.05);
+}
+
+.div_direita_cadastro button:active {
+  outline: 0;
+}
+
+.div_direita_input_cadastro input:hover {
+  border: solid 2px #F3F3F3;
+  background-color: #2d2c30;
+  color: #F3F3F3;
+}
+
+.div_direita_input_cadastro form {
+    overflow-y: scroll;
+    height: 60vh;
+    margin-bottom: 3vh;
+}
+
+.div_direita_input_cadastro input {
+  transition: 0.3s;
+  font-size: 150%;
+  display: block;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 3%;
+  padding: 0.5%;
+  border-radius: 15px;
+  padding-left: 20px;
+}
+
+.div_direita_input_cadastro input::placeholder {
+  padding-left: 3%;
+  font-size: 80%;
+}
+
+.div_direita_cadastro a {
+  word-wrap: break-word;
+  text-decoration: none;
+  color: #F3F3F3;
+  margin-left: 38%;
+  font-size: 20px;
+  cursor: auto;
+  padding-top: 10px;
+}
+
+.div_direita_cadastro u {
+  transition: 0.3s;
+  margin-left: 46%;
+  cursor: pointer;
+}
+
+.div_direita_cadastro u:hover {
+  opacity: 50%;
+}
+
+.div_h1_cadastro {
+  border: solid 3px #0388fc;
+  text-align: center;
+  height: 8vh;
+  min-width: 25vw;
+  width: 25vw;
+  margin-left: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .div_direita_input_cadastro button {
+    margin-top: 0vh;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .div_direita_input_cadastro button {
+    margin-top: 38vh;
+  }
+  .div_direita_cadastro a {
+    font-size: 15px;
+    margin-left: 30%;
+  }
+  .div_direita_cadastro u {
+    margin-left: 45%;
+  }
+  .div_h1_cadastro {
+    width: 60%;
+    margin-left: 21%;
+    height: 13vh;
+  }
+  .img_logo_cadastro {
+    margin-left: 30%;
+    margin-top: 1vh;
+    width: 40%;
+    height: 20vh;
+  }
+  .div_esquerda_cadastro {
+    display: none;
+  }
+  .div_meio_cadastro {
+    display: none;
+  }
+  .div_direita_cadastro {
+    width: 100%;
+    height: 140vh;
+  }
+  .div_container_cadastro {
+    width: 100%;
+    margin: 0;
+    height: 100%;
+  }
+  .div_esquerda_h3_cadastro {
+    font-size: 100%;
+  }
+  .div_direita_h1_cadastro {
+    margin-top:4vh;
+  }
+  .div_direita_input_cadastro form {
+    overflow-y: unset;
+    
+}
+}
+
+/* Fim Página de login */

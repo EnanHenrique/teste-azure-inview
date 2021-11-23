@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastroMaquina.css">
+    <link rel="shortcut icon" href="./img/InView apenas logo.png" type="image/x-icon">
+    <title>InView - Cadastro Máquina</title>
+</head>
+
+<body>
+
+    <!-- Inicio cadastro maquina-->
+
+    <div class="container_cadastro_maquina">
+
+        <div class="lado_esquerdo_cadastro_maquina">
+            <a href="./index.html">
+                <img class="img_logo_cadastro_maquina" src="./img/InView apenas logo branco.png"
+                    alt="Logo da empresa InView">
+            </a>
+            <div class="lado_esquerdo_h3_cadastro_maquina">
+                <h3>InView</h3>
+            </div>
+        </div>
+
+
+        <div class="lado_direito_cadastro_maquina">
+            <div class="lado_direito_h1_cadastro_maquina">
+                <div class="div_h1_cadastro_maquina">
+                    <h1>Cadastre a máquina</h1>
+                </div>
+            </div>
+
+            <div class="lado_direito_input_cadastro_maquina">
+                <form id="form_cadastro_maquina" method="post" onsubmit="return cadastrar()">
+                    <input id="id_setor" placeholder="Setor da máquina" name="name_setor" type="text"
+                        class="inputSetorMaquina">
+                    <div class="div_checkbox">
+                        <h3> Escolha os componentes para monitorar: </h3>
+                        Porcentagem de uso da CPU (%): <input id="checkboxPorcentagemCpu" type="checkbox"
+                            class="inputCheckbox" name="checkboxPorcentagemCpu" value="1"><br>
+                        Frequência da CPU (GHz): <input id="checkboxFreqCpu" type="checkbox" class="inputCheckbox"
+                            name="checkboxFreqCpu" value="2"><br>
+                        Porcentagem de uso do disco (%): <input id="checkboxPorcentagemdisco" type="checkbox"
+                            class="inputCheckbox" name="checkboxPorcentagemdisco" value="3"><br>
+                        Porcentagem de uso da memória RAM (%): <input id="checkboxPorcentagemRam" type="checkbox"
+                            class="inputCheckbox" name="checkboxPorcentagemRam" value="4"><br>
+                        Memória RAM em uso (GB): <input id="checkboxMemoRam" type="checkbox" class="inputCheckbox"
+                            name="checkboxMemoRam" value="5"><br>
+                        Monitorar processo do software (Scada): <input id="statusProcesso" type="checkbox"
+                            class="inputCheckbox" name="statusProcesso" value="6">
+                    </div>
+                </form>
+                <button onclick="verificar_cadastro_maquina()">CADASTRAR</button>
+                <button onclick="voltar_para_dashboard()">Voltar</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Fim cadastro maquina-->
+
+</body>
+
+</html>
+
+<script>
+
+    function voltar_para_dashboard() {
+        window.location.href = "escolherMaquina/escolherMaquinaHtml/escolherMaquina.html";
+    }
+
+    function verificar_cadastro_maquina() {
+        var setor = id_setor.value;
+
+        if (setor == "") {
+            alert("Digite alguma coisa!");
+        }
+        else {
+            // cadastrar();
+            verificar_componente()
+        }
+    }
+
+    function verificar_componente() {
+        var componentes = [];
+
+        if (document.getElementById('checkboxPorcentagemCpu').checked) {
+            componentes.push(document.getElementById('checkboxPorcentagemCpu').value);
+        }
+        if (document.getElementById('checkboxFreqCpu').checked) {
+            componentes.push(document.getElementById('checkboxFreqCpu').value);
+        }
+        if (document.getElementById('checkboxPorcentagemdisco').checked) {
+            componentes.push(document.getElementById('checkboxPorcentagemdisco').value);
+        }
+        if (document.getElementById('checkboxPorcentagemRam').checked) {
+            componentes.push(document.getElementById('checkboxPorcentagemRam').value);
+        }
+        if (document.getElementById('checkboxMemoRam').checked) {
+            componentes.push(document.getElementById('checkboxMemoRam').value);
+        }
+        if (document.getElementById('statusProcesso').checked) {
+            componentes.push(document.getElementById('statusProcesso').value);
+        }
+        cadastrar(componentes)
+    }
+
+    function cadastrar(componentes) {
+        var formulario = new URLSearchParams(new FormData(form_cadastro_maquina));
+        var id_cadastro_empresa = sessionStorage.id_cadastro_empresa_meuapp;
+        fetch(`/usuarios/cadastrar_maquina/${id_cadastro_empresa}`, {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+
+            if (response.ok) {
+                fetch(`/usuarios/cadastrar_componente/${componentes}`, {
+                    method: "POST",
+                    body: formulario
+                }).then(function (response) {
+                    if (response.ok) {
+                        alert("Maquina cadastrada com sucesso!");
+
+                    } else {
+                        console.log('Erro de cadastro de maquina!');
+                    }
+                });
+
+            } else {
+                console.log('Erro de cadastro de maquina!');
+            }
+        });
+
+        return false;
+    }
+
+</script>
