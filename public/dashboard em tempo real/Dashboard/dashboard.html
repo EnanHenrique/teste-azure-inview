@@ -109,14 +109,9 @@
               </button>
 
             </div>
-            <!-- <a class="navbar-brand" href="javascript:void(0)"> <b style="font-size: 110%;">Dashboard<br> tempo real</b> </a> -->
+            <a class="navbar-brand" href="javascript:void(0)"> <b style="font-size: 110%;">Máquina<span id="span_id_maquina"></span></b> </a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"> </span>
-          </button>
+          
           <div class="collapse navbar-collapse" id="navigation">
             <div class="collapse navbar-collapse" id="navigation">
               <ul class="navbar-nav ml-auto">
@@ -393,25 +388,25 @@
 </html>
 
 <script>
-
   let login_usuario = sessionStorage.login_usuario_meuapp;
-
+  
   function logoff() {
     finalizar_sessao();
     sessionStorage.clear();
     redirecionar_login();
   }
-
+  
   function finalizar_sessao() {
     fetch(`/usuarios/sair/${login_usuario}`, { cache: 'no-store' });
   }
-
+  
   function redirecionar_login() {
     window.location.href = '../../login.html';
   }
-
+  
   var valores = []
   var maquina = sessionStorage.id_maquina_meuapp;
+  span_id_maquina.innerHTML = maquina;
 
   var corCPU = ['rgba(0, 255, 162)','rgba(54, 54, 54)']
   var donutChartCPU;

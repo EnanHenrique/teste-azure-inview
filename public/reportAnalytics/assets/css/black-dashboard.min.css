@@ -36,6 +36,15 @@
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
 }
 
+.div_correlacao{
+    width: 100%;
+    margin-left: 40%;
+}
+
+.div_correlacao h1, span {
+    color: #00ffa2;
+}
+
 .alert_custo_ec2{
     display: none;
     background-color: #1c1c1cef;
@@ -98,6 +107,7 @@
     cursor: pointer;
     height: 3vh;
     width: 1.5vw;
+    margin-top: -35px;
    
 }
 
@@ -116,7 +126,7 @@
     display: flex;
     flex-direction: row;
     width: 80%;
-    /* background-color: #005e37; */
+
     align-items: center;
     justify-content: center;
     margin-top: 30px;
