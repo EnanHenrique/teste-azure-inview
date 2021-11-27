@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../../img/InView apenas logo.png">
+  <title>
+    Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/01c835c768.js" crossorigin="anonymous"></script>
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="../assets/css/black-dashboard.min.css" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body onload="atualizar_graficos()" class="" style="background-color: black;">
+  <div class="wrapper">
+    <div class="sidebar">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
+    -->
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="javascript:void(0)" class="simple-text logo-mini">
+            <img src="../../img/seer_letra_branca.png" alt="">
+          </a>
+          <a href="javascript:void(0)" class="simple-text logo-normal">
+            Seer
+          </a>
+        </div>
+        <ul class="nav">
+          <li>
+            <a href="../../escolherMaquina/escolherMaquinaHtml/escolherMaquina.html">
+              <i class=" fas fa-laptop-code"></i>
+              <p>Escolher maquina</p>
+            </a>
+          </li>
+
+          <li>
+            <a href="../../dashboard em tempo real/Dashboard/dashboard.html">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Dashboard ao vivo</p>
+            </a>
+          </li>
+
+          <li>
+            <a href="../../dashboard Gestor/dashboardGestor/dashboard.html">
+              <i class="tim-icons icon-chart-bar-32"></i>
+              <p>Dashboard Metricas</p>
+            </a>
+          </li>
+
+
+          <li>
+            <a href="../../cadastroMaquina.html">
+              <i class="tim-icons icon-laptop"></i>
+              <p>Cadastro Máquina</p>
+            </a>
+          </li>
+          <li>
+            <a href="../../cadastroFuncionarioGestor.html">
+              <i class="tim-icons icon-single-02"></i>
+              <p>Cadastro funcionário</p>
+            </a>
+          </li>
+          <li class="active ">
+            <a href="../reportAnalyticsHtml/reportAnalytics.html">
+              <i class="far fa-chart-bar"></i>
+              <p>Report Analytics</p>
+            </a>
+          </li>
+          <div onclick="logoff()" class="btn_logout">
+            <li>
+              <a>
+                <i class="fas fa-sign-out-alt"></i>
+                <p>Log-out</p>
+              </a>
+            </li>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle d-inline">
+
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+
+            </div>
+            <a class="navbar-brand" href="javascript:void(0)">Report Analytics</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"> </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navigation">
+            <div class="collapse navbar-collapse" id="navigation">
+              <ul class="navbar-nav ml-auto">
+                <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+
+                </div>
+
+              </ul>
+            </div>
+          </div>
+      </nav>
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+      <div id="content" class="content">
+        <div id="alert_custo_ec2" class="alert_custo_ec2">
+          <a onclick="fechar_alert_custo_ec2()"> <img src="../../img/close.png"> </a>
+          <h1>Custos EC2 (AWS)</h1>
+          <p style="padding: 5vh; font-size: 1rem;">
+            Estes são os custos que deverão ser pagos no próximo ano de uma instância EC2 (máquina virtual) no servidor da AWS.
+          </p>
+        </div>
+
+        <table class="content-table">
+          <thead>
+          <tr> 
+              <th>Mês</th>
+              <th>Custo em cada Mês</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+      
+              <td>Janeiro</td>
+              <td>16.72</td>
+          </tr>
+          <tr>
+              
+              <td>Fevereiro</td>
+              <td>17.08</td>
+          </tr>
+          <tr>
+              
+              <td>Março</td>
+              <td>17.44</td>
+          </tr>
+          <tr>
+              
+              <td>Abril</td>
+              <td>17.81</td>
+          </tr>
+          <tr>
+              
+              <td>Maio</td>
+              <td>18.17</td>
+          </tr>
+          <tr>
+              
+              <td>Junho</td>
+              <td>18.53</td>
+          </tr>
+          <tr>
+              
+              <td>Julho</td>
+              <td>18.89</td>
+          </tr>
+          <tr>
+              
+              <td>Agosto</td>
+              <td>19.25</td>
+          </tr>
+          <tr>
+              
+              <td>Setembro</td>
+              <td>19.61</td>
+          </tr>
+          <tr>
+              
+              <td>Outubro</td>
+              <td>19.97</td>
+          </tr>
+          <tr>
+              
+              <td>Novembro</td>
+              <td>20.33</td>
+          </tr>
+          <tr>
+              
+              <td>Dezembro</td>
+              <td>20.69</td>
+          </tr>
+      </tbody>
+      </table>
+
+        <div class="card-body">
+          <div class="container_canvas">
+            <div class="div_teste">
+            
+            <h1>Custos EC2 (AWS)</h1>
+            <a onclick="abrir_alert_custo_ec2()"> <img src="../../img/information.png"> </a>
+          </div>
+            <div class="chart-area">
+              <canvas id="myChartLineCustosEc2"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div id="alert_regressao_linear" class="alert_regressao_linear">
+          <a onclick="fechar_alert_regressao_linear()"> <img src="../../img/close.png"> </a>
+          <h1>Regressão Linear (CPU% x RAM%)</h1>
+          <p style="padding: 5vh; font-size: 1rem;">
+            Este é o gráfico resultante da regressão linear entre a correlação entre os dados
+          </p>
+        </div>
+
+        <div class="card-body">
+          <div class="container_canvas">
+           <div class="div_teste">
+              <a onclick="abrir_alert_regressao_linear()"> <img src="../../img/information.png"> </a>
+            </div>
+            <h1>Regressão Linear (CPU% x RAM%)</h1>
+            <div class="chart-area">
+              <canvas id="myChartLineRegressaoLinear"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+  <!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/chart.js"></script>
+  <script>
+    $(document).ready(function () {
+      $().ready(function () {
+        $sidebar = $('.sidebar');
+        $navbar = $('.navbar');
+        $main_panel = $('.main-panel');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+        sidebar_mini_active = true;
+        white_color = false;
+
+        window_width = $(window).width();
+
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+        $('.fixed-plugin a').click(function (event) {
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .background-color span').click(function () {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data', new_color);
+          }
+
+          if ($main_panel.length != 0) {
+            $main_panel.attr('data', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data', new_color);
+          }
+        });
+
+        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
+          var $btn = $(this);
+
+          if (sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            sidebar_mini_active = false;
+            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+          } else {
+            $('body').addClass('sidebar-mini');
+            sidebar_mini_active = true;
+            blackDashboard.showSidebarMessage('Sidebar mini activated...');
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function () {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function () {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+        });
+
+        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
+          var $btn = $(this);
+
+          if (white_color == true) {
+
+            $('body').addClass('change-background');
+            setTimeout(function () {
+              $('body').removeClass('change-background');
+              $('body').removeClass('white-content');
+            }, 900);
+            white_color = false;
+          } else {
+
+            $('body').addClass('change-background');
+            setTimeout(function () {
+              $('body').removeClass('change-background');
+              $('body').addClass('white-content');
+            }, 900);
+
+            white_color = true;
+          }
+
+
+        });
+
+        $('.light-badge').click(function () {
+          $('body').addClass('white-content');
+        });
+
+        $('.dark-badge').click(function () {
+          $('body').removeClass('white-content');
+        });
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "black-dashboard-free"
+      });
+  </script>
+
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+
+</body>
+
+</html>
+
+
+<script>
+  let login_usuario = sessionStorage.login_usuario_meuapp;
+
+  function logoff() {
+    finalizar_sessao();
+    sessionStorage.clear();
+    redirecionar_login();
+  }
+
+  function finalizar_sessao() {
+    fetch(`/usuarios/sair/${login_usuario}`, { cache: 'no-store' });
+  }
+
+  function redirecionar_login() {
+    window.location.href = '../../login.html';
+  }
+
+  function fechar_alert_custo_ec2() {
+    var alert = document.getElementById("alert_custo_ec2")
+    alert.style.display = "none";
+  }
+
+  function abrir_alert_custo_ec2() {
+    var alert = document.getElementById("alert_custo_ec2")
+    alert.style.display = "block";
+  }
+
+  function abrir_alert_regressao_linear() {
+    var alert = document.getElementById("alert_regressao_linear")
+    alert.style.display = "block";
+  }
+
+  function fechar_alert_regressao_linear() {
+    var alert = document.getElementById("alert_regressao_linear")
+    alert.style.display = "none";
+  }
+
+                                                //GRAFICO DE LINHAS (CUSTOS EC2)
+
+  gradientChartOptionsConfigurationWithTooltipPurple = {
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+
+    tooltips: {
+      backgroundColor: '#f5f5f5',
+      titleFontColor: '#333',
+      bodyFontColor: '#666',
+      bodySpacing: 4,
+      xPadding: 12,
+      mode: "nearest",
+      intersect: 0,
+      position: "nearest"
+    },
+    responsive: true,
+    scales: {
+      yAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(29,140,248,0.0)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 30,
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }],
+
+      xAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(3, 252, 211,0.1)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }]
+    }
+  };
+
+  var myChart;
+  var ctx = document.getElementById("myChartLineCustosEc2").getContext('2d');
+
+  var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+  gradientStroke.addColorStop(1, 'rgba(0, 255, 162,0.15)');
+  gradientStroke.addColorStop(0.4, 'rgba(0, 255, 162,0.008)');
+  gradientStroke.addColorStop(0, 'rgba(0, 255, 162, 0.0)'); //purple colors
+
+  var config = {
+    type: 'line',
+    data: {
+      labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Agosto", "Setembro", "Novembro", "Dezembro"],
+      datasets: [{
+        label: "Consumo",
+        fill: true,
+        backgroundColor: gradientStroke,
+        borderColor: 'white',
+        borderWidth: 2,
+        borderDash: [],
+        borderDashOffset: 0.0,
+        pointBackgroundColor: 'white',
+        pointBorderColor: 'rgba(255,255,255,0)',
+        pointHoverBackgroundColor: 'white',
+        pointBorderWidth: 20,
+        pointHoverRadius: 4,
+        pointHoverBorderWidth: 15,
+        pointRadius: 4,
+        data: [19.72, 17.08, 17.44, 17.81, 18.17, 18.53, 18.89, 19.25, 19.61, 19.97, 20.33, 20.69],
+      }]
+    },
+    options: gradientChartOptionsConfigurationWithTooltipPurple
+  };
+  myChart = new Chart(ctx, config);
+
+                                                //GRAFICO DE LINHAS (REGRESSÃO LINEAR)
+
+    gradientChartOptionsConfigurationWithTooltipPurple = {
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+
+    tooltips: {
+      backgroundColor: '#f5f5f5',
+      titleFontColor: '#333',
+      bodyFontColor: '#666',
+      bodySpacing: 4,
+      xPadding: 12,
+      mode: "nearest",
+      intersect: 0,
+      position: "nearest"
+    },
+    responsive: true,
+    scales: {
+      yAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(29,140,248,0.0)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          suggestedMin: 0, //Valor minimo que vão aparecer do lado esquerdooooooo
+          suggestedMax: 30, //Valor maximo
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }],
+
+      xAxes: [{
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(3, 252, 211,0.1)',
+          zeroLineColor: "transparent",
+        },
+        ticks: {
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }]
+    }
+  };
+
+  var myChart2;
+  var ctx = document.getElementById("myChartLineRegressaoLinear").getContext('2d');
+
+  var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+  gradientStroke.addColorStop(1, 'rgba(0, 255, 162,0.15)');
+  gradientStroke.addColorStop(0.4, 'rgba(0, 255, 162,0.008)');
+  gradientStroke.addColorStop(0, 'rgba(0, 255, 162, 0.0)'); //purple colors
+
+  var config = {
+    type: 'line',
+    data: {
+      labels: x_conhecido,
+      datasets: [{
+        label: "Regressão Linear",
+        fill: true,
+        backgroundColor: gradientStroke,
+        borderColor: 'white',
+        borderWidth: 2,
+        borderDash: [],
+        borderDashOffset: 0.0,
+        pointBackgroundColor: 'white',
+        pointBorderColor: 'rgba(255,255,255,0)',
+        pointHoverBackgroundColor: 'white',
+        pointBorderWidth: 20,
+        pointHoverRadius: 4,
+        pointHoverBorderWidth: 15,
+        pointRadius: 4,
+        data: [],
+      }]
+    },
+    options: gradientChartOptionsConfigurationWithTooltipPurple
+  };
+  myChart2 = new Chart(ctx, config);
+
+  var regressao_linear = {};
+  var x_conhecido = [];
+  var y_conhecido = [];
+
+  function linearRegression(y,x){
+        regressao_linear = {};
+        var n = y.length;
+        var sum_x = 0;
+        var sum_y = 0;
+        var sum_xy = 0;
+        var sum_xx = 0;
+        var sum_yy = 0;
+
+        for (var i = 0; i < y.length; i++) {
+
+            sum_x += x[i];
+            sum_y += y[i];
+            sum_xy += (x[i]*y[i]);
+            sum_xx += (x[i]*x[i]);
+            sum_yy += (y[i]*y[i]);
+        } 
+
+        regressao_linear['slope'] = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x);
+        regressao_linear['intercept'] = (sum_y - regressao_linear.slope * sum_x)/n;
+        regressao_linear['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
+  }
+
+  function fx(x){
+    var y = [];
+    for(var i=0; i<x.length; i++){
+      y.push(regressao_linear.intercept+regressao_linear.slope*x[i]);
+    }
+    return y;
+  }
+
+  function atualizar_graficos(){
+    var maquina = sessionStorage.id_maquina_meuapp;
+    fetch(`/leituras/leitura_corelacao/${maquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta2) {
+          console.log(`Dados do estado das maquinas recebidos: ${JSON.stringify(resposta2)}`);
+          console.log("resposta2: ", resposta2);
+          for(var i=0; i<resposta2.length; i++){
+            x_conhecido.push(resposta2[i].cpu_porcentagem);
+            y_conhecido.push(resposta2[i].ram_porcentagem);
+          }
+          console.log(x_conhecido);
+          console.log(y_conhecido);
+
+          linearRegression(y_conhecido,x_conhecido)
+          y_linear = fx(x_conhecido)
+          var data = myChart2.config.data;
+          data.datasets[0].data = y_linear;
+          data.labels = x_conhecido;
+          myChart2.update();
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção do estado das maquinas: ${error.message}`);
+      });
+}
+
+</script>

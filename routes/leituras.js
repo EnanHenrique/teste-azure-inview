@@ -101,6 +101,33 @@ router.get('/leitura_tempo_real_cpu/:maquina', function(req, res, next) {
 	});
 });
 
+router.get('/leitura_corelacao/:maquina', function(req, res, next) {
+	console.log('Recuperando medidas em tempo real CPU');
+	
+	var maquina = req.params.maquina;
+	let instrucaoSql = "";
+	
+	if (env == 'dev') {
+		// abaixo, escreva o select de dados para o Workbench
+		instrucaoSql = `select  cpu_porcentagem,ram_porcentagem from medida_analytics where fk_maquina = ${maquina} order by fk_maquina`;
+	} else if (env == 'production') {
+		// abaixo, escreva o select de dados para o SQL Server
+		instrucaoSql = `select cpu_porcentagem,ram_porcentagem from medida_analytics where fk_maquina = ${maquina} order by fk_maquina`;
+	} else {
+		console.log("\n\n\n\nVERIFIQUE O VALOR DE LINHA 1 EM APP.JS!\n\n\n\n")
+	}
+	
+	console.log(instrucaoSql);
+	
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+	.then(resultado => {
+		res.json(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
 
 router.get('/leitura_tempo_real_ram/:maquina', function(req, res, next) {
 	console.log('Recuperando medidas em tempo real RAM');

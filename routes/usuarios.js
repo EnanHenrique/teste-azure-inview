@@ -5,6 +5,7 @@ var sequelize = require('../models').sequelize;
 var cadastro_empresa = require('../models').cadastro_empresa;
 var cadastro_funcionario = require('../models').cadastro_funcionario;
 var maquina = require('../models').maquina;
+var token = require('../models').token;
 var componente_maquina = require('../models').componente_maquina;
 var env = process.env.NODE_ENV || 'development';
 
@@ -149,7 +150,8 @@ router.post('/cadastrar_maquina/:id_cadastro_empresa', function(req, res, next) 
 
 	maquina.create({
 		setor : req.body.name_setor,
-		fk_empresa : id_cadastro_empresa
+		fk_empresa : id_cadastro_empresa,
+		token: null
 	}).then(resultado => {
 		console.log(`Registro criado: ${resultado}`)
         res.send(resultado);
@@ -173,10 +175,8 @@ router.post('/cadastrar_componente/:componentes', function(req, res, next) {
 	} else {
 		console.log("\n\n\n\nVERIFIQUE O VALOR DE LINHA 1 EM APP.JS!\n\n\n\n")
 	}
-
 	
 	console.log(instrucaoSql);
-
 	sequelize.query(instrucaoSql, {
 		model: maquina
 	}).then(resultado => {
@@ -207,6 +207,22 @@ router.post('/cadastrar_componente/:componentes', function(req, res, next) {
   	});
 });
 
+/*cadastro do token*/
+router.post('/cadastrar_token/:token', function(req, res, next) {
+	console.log('Criando um usuário');
+	
+	let value = req.params.token;
+
+	token.create({
+		tokenvalues : value,
+	}).then(resultado => {
+		console.log(`Registro criado: ${resultado}`)
+        res.send(resultado);
+    }).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+  	});
+});
 
 /* Verificação de usuário */
 router.get('/sessao/:email', function(req, res, next) {

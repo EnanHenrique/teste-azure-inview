@@ -38,8 +38,9 @@
                     <!-- <div class="div_img_senha"> <img class="img_senha" src="" > </div> -->
                     <input name="senha" id="input_senha" placeholder="Senha" type="password">
                 </form>
-                <button onclick="verificar_login()">ENTRAR</button>
+                <button onclick="verificar_login(), mostrar_icon_loader()">ENTRAR</button>
                 <div id="div_erro"> E-mail e/ou senha inválidos! </div>
+                <div id="id_icon_loader" class="icon_loader"></div>
             </div>
             <br>
             <a href="cadastro.html">Não possui cadastro? <br> <u> Clique aqui. </u> </a>
@@ -55,6 +56,16 @@
 </html>
 
 <script>
+    function mostrar_icon_loader() {
+        icon = document.getElementById("id_icon_loader");
+        icon.style.display = "block";
+    }
+
+    function esconder_icon_loader() {
+        icon = document.getElementById("id_icon_loader");
+        icon.style.display = "none";
+    }
+
     //Verificacao de campos login
     function verificar_login() {
         var email = input_email.value;
@@ -62,17 +73,22 @@
 
         if (email.length < 8) {
             alert("E-mail deve ter no mínimo 8 caracteres.");
+            esconder_icon_loader();
         }
         else if (email.indexOf("@") < 1) {
             alert("E-mail deve conter '@'.");
+            esconder_icon_loader();
         }
         else if (email.indexOf(".com") < 1) {
             alert("E-mail deve conter .com");
+            esconder_icon_loader();
         }
         else if (senha.length < 4) {
             alert("A senha deve ter no mínimo 4 caracteres");
+            esconder_icon_loader();
         }
         else {
+            esconder_icon_loader();
             entrar();
         }
     }
@@ -123,6 +139,7 @@
 
                         div_erro.style.display = "block";
                         div_erro.innerHTML = "E-mail e/ou senha inválidos!";
+                        esconder_icon_loader();
                         //resposta.text().then(texto => {
                         //console.error(texto);
                         //finalizar_aguardar(texto);

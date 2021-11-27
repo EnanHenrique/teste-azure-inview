@@ -13727,7 +13727,7 @@ table.tablesorter thead tr .headerSortDown {
 }
 
 .off-canvas-sidebar .nav li:focus:not(.active)>a i, .off-canvas-sidebar .nav li:focus:not(.active)>a p, .off-canvas-sidebar .nav li:hover:not(.active)>a i, .off-canvas-sidebar .nav li:hover:not(.active)>a p, .sidebar .nav li:focus:not(.active)>a i, .sidebar .nav li:focus:not(.active)>a p, .sidebar .nav li:hover:not(.active)>a i, .sidebar .nav li:hover:not(.active)>a p {
-    color: #00ffa2
+    color: #ccc;
 }
 
 .off-canvas-sidebar .nav li.active>a:not([data-toggle=collapse]), .sidebar .nav li.active>a:not([data-toggle=collapse]) {

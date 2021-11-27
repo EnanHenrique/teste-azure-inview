@@ -21,6 +21,25 @@ textarea {
   outline: 0;
 }
 
+.icon_loader{
+  display: none;
+  border-radius: 50%;
+  animation: is-rotating 1.3s infinite;
+  height: 3vw;
+  width: 3vw;
+  border: solid 4px white;
+  border-top: solid 4px #0388fc;
+  margin-left: 48.5%;
+  margin-bottom: 3vh;
+  margin-right: auto;
+}
+
+@keyframes is-rotating {
+  to {
+      transform: rotate(1turn);
+  }
+}
+
                                                 /* Início Página de login */
 
 .div_container_login {
@@ -243,6 +262,9 @@ textarea {
   }
   .div_direita_h1_login {
     margin-top:4vh;
+  }
+  .icon_loader{
+    margin-left: 52%;
   }
 }
 

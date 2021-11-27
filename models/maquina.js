@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
+		token:{
+			firld: 'token',
+			type: DataTypes.INTEGER,
+			allowNull: true
+		}
 	}, 
 	{
 		tableName: 'maquina', 

@@ -124,13 +124,13 @@
                     body: formulario
                 }).then(function (response) {
                     if (response.ok) {
-                        alert("Maquina cadastrada com sucesso!");
-
+                        gerar_token();
+                        
                     } else {
                         console.log('Erro de cadastro de maquina!');
                     }
                 });
-
+                
             } else {
                 console.log('Erro de cadastro de maquina!');
             }
@@ -139,4 +139,32 @@
         return false;
     }
 
+    function gerar_token(){
+        var alfanumerico = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
+        var code = [];  
+        for (var i=0; i<6; i++) {
+            var j = (Math.random() * (alfanumerico.length-1)).toFixed(0);
+            code[i] = alfanumerico[j];
+        }
+        token = code.join("");
+        alert("O Token da sua máquina é: "+token)
+
+        fetch(`/usuarios/cadastrar_token/${token}`, {
+                    method: "POST",
+                }).then(function (response) {
+                    if (response.ok) {
+                        alert("Maquina cadastrada com sucesso!");
+                        document.getElementById('checkboxPorcentagemCpu').checked=false;
+                        document.getElementById('checkboxFreqCpu').checked=false;
+                        document.getElementById('checkboxPorcentagemdisco').checked=false;
+                        document.getElementById('checkboxPorcentagemRam').checked=false;
+                        document.getElementById('checkboxMemoRam').checked=false;
+                        document.getElementById('statusProcesso').checked=false;
+                        document.getElementById('id_setor').value=''
+
+                    } else {
+                        console.log('Erro de cadastro de maquina!');
+                    }
+                });
+    }
 </script>

@@ -1377,7 +1377,7 @@ pre code {
 
 .btn_logout{
     position: fixed;
-    top:650px ;
+    top:90% ;
 }
 
 
@@ -13705,14 +13705,14 @@ table.tablesorter thead tr .headerSortDown {
     width: 6px;
     top: 22px;
     left: -4px;
-    background: #fff;
+    background: #00ffa2;
     border-radius: 50%
 }
 
 .off-canvas-sidebar .nav li.active>a[data-toggle=collapse], .sidebar .nav li.active>a[data-toggle=collapse] {
     background: transparent;
     box-shadow: none;
-    color: #fff
+    color: red
 }
 
 .off-canvas-sidebar .nav li.active>a[data-toggle=collapse] i, .sidebar .nav li.active>a[data-toggle=collapse] i {
